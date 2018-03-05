@@ -1,0 +1,90 @@
+---
+tasks:
+  - name: default
+    brd_file: ALA3.brd
+    guess: Harris
+    XC_functional: B3LYP
+    J_engine: CD
+    K_engine: CD
+    XC_engine: grid
+
+# ----------------------------------------------------------------------
+# STEP 1
+# ----------------------------------------------------------------------
+  - name: res_1-1
+    sp: true
+    fragments:
+      - name: res_1-1
+        brd_select: /model_1/A/1/
+      - name: NME_1
+        add_NME: true
+        brd_select: /model_1/A/2/
+  - name: res_2-2
+    sp: true
+    fragments:
+      - name: res_1-1
+        brd_select: /model_1/A/1/
+      - name: res_2-2
+        brd_select: /model_1/A/2/
+      - name: NME_2
+        add_NME: true
+        brd_select: /model_1/A/3/
+  - name: res_3-3
+    sp: true
+    fragments:
+      - name: ACE_3
+        add_ACE: true
+        brd_select: /model_1/A/2/
+      - name: res_3-3
+        brd_select: /model_1/A/3/
+      - name: NME_3
+        add_NME: true
+        brd_select: /model_1/A/4/
+  - name: res_4-4
+    sp: true
+    fragments:
+      - name: ACE_4
+        add_ACE: true
+        brd_select: /model_1/A/3/
+      - name: res_4-4
+        brd_select: /model_1/A/4/
+      - name: res_5-5
+        brd_select: /model_1/A/5/
+  - name: res_5-5
+    sp: true
+    fragments:
+      - name: ACE_5
+        add_ACE: true
+        brd_select: /model_1/A/4/
+      - name: res_5-5
+        brd_select: /model_1/A/5/
+
+# ----------------------------------------------------------------------
+# STEP 2
+# ----------------------------------------------------------------------
+  - name: res_1-5
+    guess: QCLO
+    sp: true
+    fragments:
+      - name: res_1-5
+        fragments:
+          - name: res_1-1
+            reference:
+              frame: res_1-1
+              fragment: res_1-1
+          - name: res_2-2
+            reference:
+              frame: res_2-2
+              fragment: res_2-2
+          - name: res_3-3
+            reference:
+              frame: res_3-3
+              fragment: res_3-3
+          - name: res_4-4
+            reference:
+              frame: res_4-4
+              fragment: res_4-4
+          - name: res_5-5
+            reference:
+              frame: res_5-5
+              fragment: res_5-5
