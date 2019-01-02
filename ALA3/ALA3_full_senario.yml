@@ -8,7 +8,7 @@ tasks:
     K_engine: CD
     XC_engine: grid
     cmd_alias:
-      mat-extend: mat-extent
+      mat-extend: mat-extend
     
 # ----------------------------------------------------------------------
 # STEP 1
